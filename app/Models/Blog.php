@@ -9,19 +9,7 @@ use Illuminate\Support\Facades\File;
 class Blog extends Model
 {
     use HasFactory;
-    // a blog belongsto user
-    // a user hasmany blogs
-    // blog -> user_id
 
-    // blog client
-    // a blog  belongs to client
-    // a client  hasmany blogs
-
-    // blog comment
-    // a blog hasmany  comments
-    // a comment belongsTo blog
-
-    // blogs delete , auto blog with comment and subscriber delete
     //(model event)
     public static function boot() {
         parent::boot();
@@ -84,8 +72,6 @@ class Blog extends Model
         }
     }
 
-    // a user belongstomany subscribeblogs
-    // a blog belongstomany subscribeusers
     public function subscribeUsers()
     {
         return $this->belongsToMany(User::class);
@@ -102,20 +88,10 @@ class Blog extends Model
         
     }
 
-    // blog brand
-    // a blog  belongsto brand
-    // a brand  hasmany blogs
     public function brand()
     {
         return $this->belongsTo(Brand::class);
     }
-
-    // detail blog
-
-    // a detail hasmany blogs
-    // a blog belongsto  detail
-
-    // blog-> detail_id
 
     public function detail()
     {

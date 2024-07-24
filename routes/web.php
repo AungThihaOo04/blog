@@ -30,26 +30,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
-
-// Route::get('/send-email', function()
-// {
-//     $subscriberName = "aung aung";
-//     $commentBody = "This is comment body.";
-//     Mail::to('aungthihaoo123@gmail.com')
-//         ->queue(new SubscriberMail($subscriberName, $commentBody));
-//     Mail::to('johndoe@gmail.com')
-//         ->queue(new SubscriberMail($subscriberName, $commentBody));
-//     Mail::to('jimmy@gmail.com')
-//         ->queue(new SubscriberMail($subscriberName, $commentBody));
-
-//     echo 'hello world';
-// });
-
 Route::middleware(MustBeAdminUser::class)->group(function() {
-    // Route::get('/admin/info', [AdminProfileController::class,'show']);
-    // Route::get('/users/{user:id}/myprofile',[ProfileController::class, 'index']);
-    // Route::get('/users/{user:id}/myprofile/show',[ProfileController::class, 'show']);
-
     Route::get('/admin/detail' , [AdminDetailController::class, 'index']);
     Route::get('/admin/detail/create' , [AdminDetailController::class, 'create']);
     Route::post('/admin/detail/store' , [AdminDetailController::class, 'store']);
@@ -74,7 +55,6 @@ Route::middleware(MustBeAdminUser::class)->group(function() {
     Route::put('/admin/brands/{brand:id}/update',[AdminBrandController::class, 'update']);
     Route::delete('/admin/brands/{brand:slug}/destroy',[AdminBrandController::class, 'destroy']);
 
-
     Route::get('/admin/categories' , [AdminCategoryController::class, 'index']);
     Route::get('/admin/categories/create' , [AdminCategoryController::class, 'create']);
     Route::post('/admin/categories/store' , [AdminCategoryController::class, 'store']);
@@ -95,13 +75,8 @@ Route::middleware(MustBeAuthUser::class)->group(function() {
     Route::post('/details/{detail:id}/handle-subscriptions',[SubscriptionsContorller::class,'toggle']);
 
     Route::get('/users/{user:id}/detail',[DetailController::class, 'index']);
-
     // Route::get('/details/{user:id}/detail' ,[DetailController::class, 'index']);
-
-
-    Route::get('/profiles',[ProfileController::class,'index']);
 });
-
 
 Route::middleware(MustBeGuestUser::class)->group(function() {
     Route::get('/register' , [RegisterController::class, 'create']);
@@ -110,50 +85,6 @@ Route::middleware(MustBeGuestUser::class)->group(function() {
     Route::post('login', [LoginController::class , 'store']);
 });
 
-
-
-// Route::get('/categories/{category:slug}' , function(Category $category){
-//     return view('blogs.index' , [
-//         'blogs' =>$category->blogs()->with('user' , 'category')->paginate(3),
-//         // 'categories' =>Category::all(),
-//         // 'users' => User::all()
-//     ]);
-// });
-
-// Route::get('users', [UserController::class , 'index']);
-// Route::get('users/{user:username}', [UserController::class, 'index']);
-
-
-// Route::get('categories' , function(){
-//     return view('categories' , [
-//         'categories' => Category::all()
-//     ]);
-// });
-
-// Route::get('users/{user:username}', function(User $user){
-//     return view('blogs.index', [
-//         'blogs' =>$user->blogs()->with('user', 'category')->paginate(),
-//         // 'categories' => Category::all(),
-//         // 'users' => User::all()
-//     ]);
-// });
-
-// Route::get('categories/{category:slug}' , function(Category $category){
-//     return view('blogs.index', [
-//         'blogs' => $category->blogs()->with('user' , 'category')->paginate(),
-//         'categories' =>Category::all()
-//     ]);
-// });
-
-// Route::get('users/{user:username}', function(User $user){
-//     return view('blogs' , [
-//         'blogs' => $user->blogs->load('user' , 'category')
-//     ]);
-// });
-
-Route::get('a' , function(){
-    return view('a');
-});
 
 
 

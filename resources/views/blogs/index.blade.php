@@ -1,4 +1,3 @@
-{{-- <button>{{auth()->user()->name}}</button> --}}
 <x-layout>
 <div class="container d-flex justify-content-center  border border-start-0 border-end-0">
     <x-user/>
@@ -71,8 +70,6 @@
                       {{$blog->brand->name}} 
                     </a></p>
                   </div> --}}
- 
-                  {{-- <p class="card-text">{{substr($blog->body,0,70)}}...</p> --}}
                   <p>{{$blog->created_at->diffForHumans()}}</p>
                   <p>{{$blog->comments->count()}} comments</p>
 

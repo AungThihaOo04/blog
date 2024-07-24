@@ -8,22 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Detail extends Model
 {
     use HasFactory;
-    // a user hasone detail
-    // a detail belongsto user
-
-    // detail -> user_id
 
     public function user()
     {
         return $this->belongsTo(User::class);
     }
-
-    // detail blog
-
-    // a detail hasmany blogs
-    // a blog belongsto  detail
-
-    // blog-> detail_id
 
     public function blogs()
     {

@@ -46,22 +46,6 @@
             </a></p> --}}
             <p class="badge text-bg-success">Category-{{$blog->category->name}}</p>
             <p class="badge text-bg-success">Brand-{{$blog->brand->name}}</p>
-            {{-- <div class="row my-2">
-              <div class="col-md-2">
-                <strong class="">Ram -</strong>
-              </div>
-              <div class="col-md-10">
-                <span class="btn btn-outline-secondary">{{$blog->ram}}</span>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-2">
-                <strong class="">Storage -</strong>
-              </div>
-              <div class="col-md-10">
-                <span class="btn btn-outline-secondary">{{$blog->storage}}</span>
-              </div>
-            </div> --}}
             <h4>{{$blog->title}}</h4>
             <h5>Color - {{$blog->color}}</h5>
             <h4>{{$blog->price}}</h4>

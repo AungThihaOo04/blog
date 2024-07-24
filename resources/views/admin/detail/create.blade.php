@@ -65,10 +65,6 @@
         <div class="form-group">
             <label for="">User</label>
             <select class="form-select " name="user_id" id="">
-                {{-- @foreach ($users as $user)
-                    <option  value="{{$user->id}}">{{$user->name}}
-                    </option>                    
-                @endforeach --}}
                 <option  value="{{$user->id}}">{{$user->name}}
             </select>
         </div>

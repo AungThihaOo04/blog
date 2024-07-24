@@ -13,16 +13,6 @@ class RegisterController extends Controller
     }
 
     public function store(){
-        // $cleandate = request()->validate([
-        //     'name'=> ['required'],
-        //     'username' => ['required'],
-        //     'email' => ['required'],
-        //     'password' => ['password']
-        // ]);
-
-        // dd($cleandate);
-
-        // dd(request()->all());
        $cleanData= request()->validate([
             'name' => ['required' , 'max:20'],
             'username'=> ['required' , 'max:20'],

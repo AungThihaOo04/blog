@@ -18,37 +18,16 @@ class CommentController extends Controller
             'body' => ['required']
         ]);
 
-        // comment create
-        // Comment::create([
-        //     'body' => $cleanData['body'],
-        //     'user_id' => auth()->id(),
-        //     'blog_id' => $blog->id,
-        // ]);
-
        $comment =  $blog->comments()->create([
             'body' => $cleanData['body'],
             'user_id' => auth()->id(),
         ]);
-        // dd($detail->subscribeUsers);
-        // dd($detail);
-        // dd($blog);
-        // dd(auth()->id());
-        // dd($blog->subscribeUsers->filter(function($user) {
-        //     return $user->id != auth()->id() ;
-        // }));
 
        $subscriber =  $blog->subscribeUsers->filter(function($user) {
             return $user->id != auth()->id();
         })->each(function($subscriber) {
             logger($subscriber->name);
         });
-
-        //  $subscriber = $blog->subscribeUsers->filter(function($user) {
-        //     return $user->id != auth()->id();
-        // })-> each(function($subscriber) use($comment){
-        //     Mail::to($subscriber->email)->queue(new SubscriberMail($subscriber, $comment));
-        // });
-
         return back();
     }
 
@@ -77,7 +56,5 @@ class CommentController extends Controller
         $comment->update();
 
         return redirect('/blogs/'.$comment->blog->slug.'/detail'); 
-        // return redirect()->route('blog.show' , $comment->blog->slug);
-        // return redirect('/blogs/'.$blog->slug/'detail');
     }
 }

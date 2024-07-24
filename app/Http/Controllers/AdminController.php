@@ -20,7 +20,6 @@ class AdminController extends Controller
     public function index()
     {
         return view('admin.blog.index' , [
-            // 'blogs' => Blog::with('category' ,'user', 'brand')->paginate(6)
             'blogs' => auth()->user()->blogs()->latest()->paginate(6)
         ]);
     }
@@ -35,42 +34,19 @@ class AdminController extends Controller
 
     public function store(BlogFormRequest $request , User $user)
     {
-    // $cleandata =  request()->validate([]);
        $cleandata = $request->validated();
        $cleandata['user_id'] =auth()->id();
        $cleandata['detail_id'] =auth()->id();
        $cleandata['photo']='/storage/'.request('photo')->store('/blogs');
        $blog = Blog::create($cleandata);
         //dd($blog->detail()->get());
-    //    dd($blog->detail->subscribeUsers());
+        //dd($blog->detail->subscribeUsers());
        $subscriber =  $blog->detail->subscribeUsers->filter(function($user) {
         return $user->id != auth()->id();
         })->each(function($subscriber) {
-            // logger($subscriber->name);
             Mail::to($subscriber->email)->queue(new SubscriberMail( $subscriber ));
         });
     return redirect('/admin');
-
-
-    //    if($blog->detail->issSubscribeBy(auth()->user())){
-    //         $subscriber =  $blog->detail->subscribeUsers->filter(function($user) {
-    //         return $user->id != auth()->id();
-    //         })->each(function($subscriber) {
-    //             Mail::to($subscriber->email)->queue(new SubscriberMail( $subscriber ));
-    //         });
-    //    }else{
-    //     return redirect('/admin');
-    //    }
-
-        //dd($blog->detail->subscribeUsers);
-        //dd($blog->detail->subscribeUsers->filter(function($user) {
-        //return $user->id != auth()->id();
-        //})); 
-       
-        // $path = '/storage/'.request('photo')->store('/blogs');
-        // $cleandata['photo'] = $path;
-        // dd($cleandata);
-        // $blogs = $user->blogs()->create($cleandata);
     }
 
     public function edit(Blog $blog)
